@@ -1,0 +1,200 @@
+﻿<!--Project: Kripton-->
+<Window 
+        x:Class="Kriptond1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="K  R  I  P  T  O  N" 
+        WindowState="Maximized" 
+        WindowStartupLocation="CenterScreen"
+        HorizontalAlignment="Center" 
+        VerticalAlignment="Center" 
+        Background="LightSteelBlue"
+        Margin="1"
+        SizeChanged="Window_SizeChanged"
+        MouseWheel="Window_MouseWheel">
+    <!--MAIN PANEL (A) -->
+    <DockPanel  x:Name="MainPanel" Background="Azure" Margin="1"  >
+        <!--TOP REGION (A) -->
+        <StackPanel DockPanel.Dock="Top" x:Name="TopPanel" Orientation="Vertical" Margin="1" >
+            <!--FIRST TOP LINE (A) -->
+            <UniformGrid x:Name="TopLine1" Rows="1" Background="FloralWhite" Margin="1">
+                <Label Name="labelRunTime" Content="Run-Time" 
+                       ToolTip="Aplication Running Time"/>
+                <Label Name="labelWindowSize" Content="Window" />
+                <Label Name="labelGraphicsSize" Content="Graphics" />
+                <Label Name="labelTitle" Content="K     R     I     P     T     O     N" 
+                       FontWeight="Bold"/>
+                <Label Name="labelFPS" Content="[ FPS : ]" 
+                       ToolTip="Frames-per-Second"/>
+                <Label Name="labelDate" Content="Date" />
+            </UniformGrid>
+            <!--FIRST TOP LINE (B) -->
+            <!--SECOND TOP LINE (A) -->
+            <UniformGrid x:Name="TopLine2" Rows="1" Background="Beige" Margin="1">
+                <Label Name="labelDT_AnimationTime" Content="[ dt =  ]"
+                       ToolTip="Differential Animation Time (milliseconds)"/>
+                <Label Name="labelAnimationTime" Content="[ t =  ]"
+                       ToolTip="Animation Time (seconds)"/>
+                <TextBox Name="TextBox_InputDTT"  
+                         TextChanged="TextBox_InputDTT_TextChanged" 
+                         HorizontalAlignment="Right"
+                         ToolTip="Enter DTT in milliseconds"
+                         Width="30" Margin="5"/>
+
+                <Label Name="labelDTT_AnimationTime" Content="[ dtt =  ]" 
+                       ToolTip="Differential Virtual Time (milliseconds)"/>
+                <Label Name="labelVirtualTime" Content="[ tt =  ]" 
+                       ToolTip="Virtual Animation Time (seconds)"/>
+                <Label Name="labelAnimVirtualTime"  
+                       Content="[ __ms Anim Time = __ms Virt Time  ]" 
+                       HorizontalAlignment="Left"
+                       ToolTip="Mapping: Differential Animation Time ---> Differential Virtual Time"/>
+                <Button Name="buttonSync" Content="SYNCHRONIZE" Click="ButtonSync_Click"
+                        ToolTip="Synchronize Differential Virtual-Time respect to Natural Animation Time"
+                        Margin="2"  />
+            </UniformGrid>
+            <!--SECOND TOP LINE (B) -->
+            <!--THIRD TOP LINE (A) -->
+            <UniformGrid x:Name="TopLine3" 
+                         Rows="1" Background="Beige" 
+                         Margin="1">
+
+                <Label x:Name="labelMouseXY" 
+                       Content="[ x | y ]" 
+                       HorizontalAlignment="Left"
+                       ToolTip="Pixel-Position of the Mouse respect to the Animation's area"
+                       Margin="2"/>
+
+                <Label x:Name="labelXYText" 
+                       Content=" ( x | y ) = " 
+                       HorizontalAlignment="Right"
+                       ToolTip="XY coordinates of Mouse measured in Math-Units (u)"
+                       Margin="0" FontSize="10"/>
+
+                <Label x:Name="labelXY" 
+                       Content="(x | y)=" 
+                       HorizontalAlignment="Left"
+                       ToolTip="XY coordinates of Mouse measured in Math-Units (u)"
+                       Margin="0" FontSize="10"/>
+
+
+                <TextBox x:Name="TextBox_OX"
+                         TextChanged="TextBox_OX_TextChanged"
+                         HorizontalAlignment="Right"
+                         ToolTip="Enter X-Relative Origin OX in units"
+                         Width="30" Margin="6"/>
+
+                <Label x:Name="LabelOX"
+                       Content="OX : "
+                       ToolTip="OX in units"/>
+
+
+                <TextBox x:Name="TextBox_OY"
+                         TextChanged="TextBox_OY_TextChanged"
+                         HorizontalAlignment="Right"
+                         ToolTip="Enter Y-Relative Origin OY in units"
+                         Width="30" Margin="6" />
+                
+                
+                <Label x:Name="LabelOY"
+                       Content="OY : "
+                       ToolTip="Enter Y-Relative Origin OY in units" />
+                
+                <TextBox Name="TextBox_XScale"  
+                         TextChanged="TextBox_XScale_TextChanged"
+                         HorizontalAlignment="Right"
+                         ToolTip="Enter X scale in pixels / unit"
+                         Width="30" Margin="6"/>
+
+                <Label x:Name="labelXscale"
+                       Content="X Scale :" 
+                       ToolTip="X scale on pixels / unit"/>
+
+                <TextBox Name="TextBox_YScale"  
+                         TextChanged="TextBox_YScale_TextChanged"
+                         HorizontalAlignment="Right"
+                         ToolTip="Enter Y scale in pixels / unit"
+                         Width="30" Margin="6"/>
+
+                <Label x:Name="labelYscale" 
+                       Content="Y Scale :" 
+                       ToolTip="Y scale on pixels / unit"
+                       />
+
+                <Label x:Name="labelXMin" Content="X Min : " ToolTip="Y Min. (units)" />
+
+                <Label x:Name="labelXMax" Content="X Max : " ToolTip="Y Max. (units)" />
+
+                <Label x:Name="labelYMin" Content="Y Min : " ToolTip="Y Min. (units)" />
+
+                <Label x:Name="labelYMax" Content="Y Max : " ToolTip="Y Max. (units)" />
+
+
+            </UniformGrid>
+            <!--THIRD TOP LINE (B) -->
+
+        </StackPanel>
+        <!--BOTTOM REGION REGION (A) -->
+        <StackPanel DockPanel.Dock="Bottom"  x:Name="BottomPanel" 
+                    Background="Beige"
+                    Orientation="Vertical" Margin="1" >
+
+
+
+            <!--FIRST BOTTOM LINE (A) -->
+            <UniformGrid x:Name="BottomLine1" Rows="1" Margin="1" >
+                <Button Name="ButtonStart" Content="START" Click="ButtonStart_Click" Margin="2"/>
+                <Button Name="ButtonPause" Content="PAUSE" Click="ButtonPause_Click" Margin="2"/>
+                <Button Name="ButtonContinue" Content="CONTINUE" Click="ButtonContinue_Click" Margin="2" />
+                <Button Name="ButtonBackwards" Content="BACKWARDS" Click="ButtonBackwards_Click" Margin="2"/>
+                <Button Name="ButtonStop" Content="STOP" Click="ButtonStop_Click" Margin="2"/>
+                <Button Name="ButtonBackground" Content="BLACK / WHITE" Click="ButtonBackground_Click" Margin="2"/>
+                <Button Name="ButtonHelp" Content="HELP" Click="ButtonHelp_Click" Margin="2" />
+                <Button Name="ButtonAbout" Content="ABOUT" Click="ButtonAbout_Click" Margin="2" />
+                <Button Name="ButtonQuit" Content="QUIT" Click="ButtonQuit_Click" Margin="2"/>
+            </UniformGrid>
+            <!--FIRST BOTTOM LINE (B) -->
+
+            <!--SECOND BOTTOM LINE (A) -->
+            <UniformGrid x:Name="BottomLine2" Rows="1" Margin="1" >
+                <Button x:Name="ButtonRestore" 
+                        Content="RESTORE DEFAULTS"
+                        Click="ButtonRestore_Click"
+                        Margin="2" />
+                <Button x:Name="ButtonShowAxis" 
+                        Content="SHOW / HIDE AXIS" 
+                        Click="ButtonShowAxis_Click" 
+                        Margin="2"/>
+                <Button x:Name="ButtonShowGrid" 
+                        Content="SHOW / HIDE GRID" 
+                        Click="ButtonShowGrid_Click" 
+                        Margin="2" />
+                <Button x:Name="ButtonShowXYLabels"
+                        Content="SHOW / HIDE XY LABELS"
+                        Click="ButtonShowXYLabels_Click"
+                        Margin="2" />
+                
+
+
+            </UniformGrid>
+            <!--SECOND BOTTOM LINE (B) -->
+
+
+
+        </StackPanel>
+        <!--BOTTOM REGION REGION (B) -->
+        <!--CENTER REGION REGION (A) -->
+        <DockPanel x:Name="GraphicsPanel" 
+                   Margin="2" 
+                   Background="Green"
+                   Loaded="GraphicsPanel_Loaded" >
+            <Canvas x:Name="CanvasPanel" Margin="2" MouseDown="CanvasPanel_MouseDown" />
+        </DockPanel >
+        <!--CENTER REGION REGION (B) -->
+    </DockPanel>
+    <!--MAIN PANEL (B) -->
+</Window>
